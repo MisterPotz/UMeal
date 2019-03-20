@@ -1,0 +1,24 @@
+<resources>
+    <string name="bon_apetit">Приятного аппетита!</string>
+    <string name="suggest_to_choose">Выберите вкусности :-)</string>
+    <string name="app_name">UMeal</string>
+    <string name="u_canteen_1">Столовая ГЗ, 2 этаж</string>
+    <string name="working_time">Рабочее время:</string>
+    <string name="title_cost">Стоимость:</string>
+    <string name="calories">Калории</string>
+    <string name="ratio">Соотношение б/ж/у</string>
+    <string name="weight">Вес блюда</string>
+    <string name="dish_info_title">Информация</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_cart">CartActivity</string>
+
+    <string-array name="names_of_days">
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+    </string-array>
+    <string name="title_activity_dish_info">DishInfoActivity</string>
+</resources>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DishInfoActivity"
+    android:background="@color/colorGreyLight">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/MyMaterialTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            app:title="@string/dish_info_title"
+            android:id="@+id/dish_info_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/MyMaterialTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/dish_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/dish_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:textColor="@color/priceText"
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@string/weight"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/dish_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@string/calories"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/dish_calories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@string/ratio"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/dish_ratio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="15dp"/>
+        <ImageButton
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add_shopping_cart_black_24dp"
+            style="@style/SelectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:padding="30dp"
+            android:layout_margin="5dp"
+            android:id="@+id/dish_info_add_to_cart"/>
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
