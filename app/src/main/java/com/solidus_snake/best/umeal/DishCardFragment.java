@@ -2,7 +2,7 @@ package com.solidus_snake.best.umeal;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,12 +13,12 @@ import android.view.ViewGroup;
 
 import com.solidus_snake.best.umeal.dish_selector.DishAdapter;
 import com.solidus_snake.best.umeal.university_canteen.Dish;
-import com.solidus_snake.best.umeal.university_canteen.DishBuilderJSON;
+
 
 import java.util.ArrayList;
 
-//TODO разберись как делать всё это через фрагменты
-public class DishCardFragment extends Fragment { //фрагмент, который будет использоваться как элемент в табах
+//фрагмент, который будет использоваться как список одной категории элемента tabLayout
+public class DishCardFragment extends Fragment {
     public DishCardFragment() {
         // Required empty public constructor
     }
@@ -26,10 +26,13 @@ public class DishCardFragment extends Fragment { //фрагмент, котор�
     //заготавливаем слушатели для связи с активностью
     OnClickListener onClickListener;
     public interface OnClickListener{
+
+        //это для щелчка по кнопочке карточки
         void onItemClick(Dish dish, int category);
+
+        //это для щелчка по самой карточке
         void onCardClick(Dish dish, int category);
     }
-
 
     private RecyclerView recyclerView;
     private ArrayList<Dish> dishes;
@@ -39,12 +42,15 @@ public class DishCardFragment extends Fragment { //фрагмент, котор�
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO передавать только указания по парсингу .json
+        //получаем данные из активности
         Dish[] dishes = (Dish[]) getArguments().getParcelableArray("dishes");
+
         //получаем полный список блюд для данной категории, за которую отвечает фрагмент
         category = getArguments().getInt("category");
+
         //переписываем в ArrayList все блюда
         this.dishes = new ArrayList<>(dishes.length);
+
         for (Dish dish : dishes){
             this.dishes.add(dish);
         }
@@ -54,11 +60,12 @@ public class DishCardFragment extends Fragment { //фрагмент, котор�
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
-
+        //настраиваем слушатель, как параметр служит активность-наследник интерфейса фрагмента
         setOnAddToCartClickListener(getActivity());
-        // Inflate the layout for this fragment
 
+        // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_main2, parent, false);
+
         // 1. получаем ссылку на RecyclerView
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.tab_recycler_view);
 
@@ -70,7 +77,6 @@ public class DishCardFragment extends Fragment { //фрагмент, котор�
         DishAdapter.MyOnButtonClickListener listener = new DishAdapter.MyOnButtonClickListener() {
             @Override
             public void onItemClick(int dish_item) {
-                //при щелчке по кнопке вывести это
 
                 //мы соединили активити и фрагмент через интерфейс. а потом фрагмент
                 //и его составляющие RecycleView также - через интерфейс и слушатель
@@ -94,7 +100,7 @@ public class DishCardFragment extends Fragment { //фрагмент, котор�
 
         return rootView;
     }
-
+//установка слушателя
     private void setOnAddToCartClickListener(Activity activity) {
         try {
             onClickListener = (OnClickListener) activity;

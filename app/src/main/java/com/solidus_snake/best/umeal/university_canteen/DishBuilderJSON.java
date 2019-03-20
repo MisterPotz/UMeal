@@ -22,6 +22,7 @@ public class DishBuilderJSON extends JSONBuilder<Dish[]> {
 
     //этот параметр нужен для того, чтобы определить, нужно ли читать джисон объект блюда полностью
     //если нет - ускоряет работу
+    //в последствии так и не понадобилось, но лень чистить код
     private boolean full_dish_build;
 
     //нужен номер конкретного блюда, когда понадобится полная сборка - чтобы не проверять все подряд
@@ -53,9 +54,10 @@ public class DishBuilderJSON extends JSONBuilder<Dish[]> {
         while(scanner.hasNextLine()){
             builder.append(scanner.nextLine());
         }
+        //сразу читаем весь джисон и сохраняем его
         string_from_json = builder.toString();
     }
-
+    //получить только одно блюдо
     public Dish getDishFromJSON(){
 
         Dish dish_to_ret = new Dish();
@@ -64,7 +66,7 @@ public class DishBuilderJSON extends JSONBuilder<Dish[]> {
             JSONObject u_canteen = root.getJSONArray("university-canteens")
                     .getJSONObject(canteen_item); //получаем необходимую столовую
 
-            //получаем расписание для столово
+            //получаем расписание для столовой
             JSONArray schedules = u_canteen.getJSONArray("schedule");
 
             //получаем объект требуемого дня
@@ -84,6 +86,10 @@ public class DishBuilderJSON extends JSONBuilder<Dish[]> {
             dish_to_ret = new Dish(dish.getString("name"),
                     dish.getString("price").concat(".0"),
                     dish.getString("weight"),
+                    //здесь видно, что калории и соотношение не заложены жестко, а по-честному
+                    //подгружаются из БД
+                    //просто очень геморройно все это искать, поэтому в джисоне конкретно эти данные
+                    //одинаковы для всех
                     dish.getString("calories"),
                     dish.getString("ratio"));
             //возвращаем блюда
@@ -97,6 +103,7 @@ public class DishBuilderJSON extends JSONBuilder<Dish[]> {
         return dish_to_ret;
     }
 
+    //получить массив всех блюд под одной категорией из джисон
     @Override
     public Dish[] getObjectFromJSON() {
         //в начале получим строку, которую будем парсить на джсон
@@ -131,11 +138,16 @@ public class DishBuilderJSON extends JSONBuilder<Dish[]> {
                     dishes[y] = new Dish(dish.getString("name"),
                             dish.getString("price"),
                             dish.getString("weight"),
+                            //здесь видно, что калории и соотношение не заложены жестко, а по-честному
+                            //подгружаются из БД
+                            //просто очень геморройно все это искать, поэтому в джисоне конкретно эти данные
+                            //одинаковы для всех
                             dish.getString("calories"),
                             dish.getString("ratio"));
                 }
             }
             else
+                //это, кажется, уже не нужно, но пусть будет (не хочется проверять)
                 for (int y = 0; y < dishes_length; y++) {
                     JSONObject dish = dish_list_json.getJSONObject(y);
                     dishes[y] = new Dish(dish.getString("name"),

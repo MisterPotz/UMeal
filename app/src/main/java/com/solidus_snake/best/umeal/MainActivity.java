@@ -66,19 +66,20 @@ public class MainActivity extends AppCompatActivity {
         String[] days = getResources().getStringArray(R.array.names_of_days);
 
 
-
-      //  mNavigationSpinner = new Spinner(getSupportActionBar().getThemedContext());
         mNavigationSpinner = (Spinner) findViewById(R.id.day_spinner);
 
         //готовим адаптер для spinner элемента
         toolbar_adapter = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, days);
-        //используем стандартные библиотечные разметки
+        //настраиваем выпадающий список красивым
         toolbar_adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
 
         mNavigationSpinner.setAdapter(toolbar_adapter);
 
+
         mNavigationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            //при тыканье на спиннер, определить тыкнутый день
+            //и изменить информацию на карточках в соответствии с расписание столовых в этот день
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (current_day_selected == position){
@@ -98,15 +99,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-
+        //при тыканье на всю карточку запускаем новую активность с выбором блюд
         UniversityCanteensAdapter.OnCanteenClickListener listener =
                 new UniversityCanteensAdapter.OnCanteenClickListener() {
                     @Override
                     public void OnClickListener(final int data) {
+                        //передаем все необходимые параметры
                         Bundle bundle = new Bundle();
                         bundle.putInt("canteen_number", data);
                         bundle.putInt("current_day", current_day_selected);
-                        //TODO categories_amount
                         bundle.putInt("categories_amount", categories_amount);
                         Intent next = new Intent(getBaseContext(), Main2Activity.class);
                         next.putExtras(bundle);
@@ -123,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    //TODO адаптер то о дне нихуя не знает! поэтому спинер хуинер не воркабилити!
     //заполняем данные об университетских столовых, используя ресурсы
     private void createListData() {
         if (university_canteens_list.size() ==  0){

@@ -9,9 +9,10 @@ import android.view.ViewGroup;
 import com.solidus_snake.best.umeal.R;
 import java.util.ArrayList;
 
-
+//адаптер для ресайклера на первом экране
 public class UniversityCanteensAdapter extends RecyclerView.Adapter<UniversityCanteensHolder>  {
 
+    //связь между этим адаптером и активностью, где используется этот адаптер
     public interface OnCanteenClickListener{
         void OnClickListener(int data);
     }
@@ -36,7 +37,7 @@ public class UniversityCanteensAdapter extends RecyclerView.Adapter<UniversityCa
                 int item = ((RecyclerView)parent).getChildLayoutPosition(v);
                 mListener.OnClickListener(item);
             }
-        }); //получаем RecycleView, для которого будет работать слушатель
+        });
         return new UniversityCanteensHolder(view);
     }
     @Override
@@ -51,6 +52,7 @@ public class UniversityCanteensAdapter extends RecyclerView.Adapter<UniversityCa
     }
     public void refresh(int i){
         currentDay = i;
+        //перезагружаем список
         notifyDataSetChanged();
     }
 }

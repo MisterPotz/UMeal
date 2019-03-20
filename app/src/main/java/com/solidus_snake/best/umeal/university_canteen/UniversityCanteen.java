@@ -1,6 +1,7 @@
 package com.solidus_snake.best.umeal.university_canteen;
 
-
+//класс столовки
+//был много раз переделан, так что есть неиспользуемые функции
 public class UniversityCanteen{
     private final String name;
     private final DishScheduleContainer[] dish_schedule_container; //этот массив выражает собой полное меню блюд по всем дням недели и категориям

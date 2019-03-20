@@ -2,7 +2,8 @@ package com.solidus_snake.best.umeal.university_canteen;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+//класс блюда, хранящий все характеристики блюда,
+//наседуется от Parcelable ля удобства передачи между активностями
 public class Dish implements Parcelable {
     private final String name;
     private final String price;

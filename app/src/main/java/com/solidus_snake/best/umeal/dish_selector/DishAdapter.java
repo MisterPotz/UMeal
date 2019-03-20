@@ -14,11 +14,14 @@ import com.solidus_snake.best.umeal.university_canteen.Dish;
 
 import java.util.ArrayList;
 
-
+//адаптер для recycleview в tabLayout
 public class DishAdapter extends RecyclerView.Adapter<DishHolder>  {
 
+    //интерфейс для соединения между фрагментом и адаптером
     public interface MyOnButtonClickListener{
+        //для щелчка по кнопке
         void onItemClick(int dish_item);
+        //для щелчка по карточке
         void onWholeViewClick(int dish_item);
     }
     MyOnButtonClickListener mListener;
@@ -37,7 +40,6 @@ public class DishAdapter extends RecyclerView.Adapter<DishHolder>  {
 
         View view = LayoutInflater.from(context).inflate(R.layout.dish_card_layout, parent, false);
        //задаем слушателя, который будет работать при нажатии на карточку
-       //TODO здесь в слушателе реализовать переход на активность блюда
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

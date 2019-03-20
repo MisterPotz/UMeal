@@ -7,7 +7,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.solidus_snake.best.umeal.R;
-import com.solidus_snake.best.umeal.university_canteen.Dish;
+
 
 
 public class DishHolder extends RecyclerView.ViewHolder {
@@ -21,7 +21,8 @@ public class DishHolder extends RecyclerView.ViewHolder {
         this.btnCart= (ImageButton) itemView.findViewById(R.id.cart_button);
         this.txtPrice = (TextView) itemView.findViewById(R.id.dish_price);
     }
-    public void setDetails(String name, String price) { //получаем на вход строку-имя блюда
+    //устанавливаем все элементы
+    public void setDetails(String name, String price) {
         txtName.setText(name);
         txtPrice.setText(price);
     }

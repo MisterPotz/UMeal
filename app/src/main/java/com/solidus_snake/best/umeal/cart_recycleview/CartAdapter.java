@@ -42,9 +42,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder> {
         cartHolder.setListeners(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
                 //при щелчке удалить блюдо, которое решили удалить
                 int item = cartHolder.getAdapterPosition();
+
+                //проверка, есть ли вообще такое блюдо (нужно, если человек будет тыкать очень быстро
+                //на кнопку удаления
                 if (item != RecyclerView.NO_POSITION){
                     removeAt(item);
                 }
@@ -55,6 +57,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartHolder> {
     public void removeAt(int position) {
         //убираем нажатую позицию и вносим изменения в RecycleView
         dishList.remove(position);
+        //уведомляем об изменении
         this.notifyItemRemoved(position);
         this.notifyItemRangeChanged(position, dishList.getSize());
         //обновляем ценник

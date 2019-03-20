@@ -3,11 +3,12 @@ package com.solidus_snake.best.umeal.dish_selector;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.solidus_snake.best.umeal.DishCardFragment;
 import com.solidus_snake.best.umeal.university_canteen.Dish;
 
 import java.util.ArrayList;
 
+//стек для выбранных блюд, наследуется от Parcelable для возможности передачи между
+//активностями
 public class DishCart  implements Parcelable {
     private ArrayList<Dish> selectedDishes;
 

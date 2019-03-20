@@ -1,49 +1,41 @@
 package com.solidus_snake.best.umeal;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
+
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Message;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.provider.ContactsContract;
+
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
+
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentTransaction;
+
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.Gravity;
-import android.view.LayoutInflater;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+
 
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.solidus_snake.best.umeal.dish_selector.DishCart;
 import com.solidus_snake.best.umeal.university_canteen.Dish;
 import com.solidus_snake.best.umeal.university_canteen.DishBuilderJSON;
 import com.solidus_snake.best.umeal.university_canteen.UniversityBuilderJSON;
-import com.solidus_snake.best.umeal.university_canteen.UniversityCanteen;
+
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
+
 
 public class Main2Activity extends AppCompatActivity implements DishCardFragment.OnClickListener {
     private TabAdapter adapter;
@@ -53,6 +45,7 @@ public class Main2Activity extends AppCompatActivity implements DishCardFragment
     private ImageButton imgBtnToCart;
     private final int GET_DISH_TO_CART = 3;
     private final int GET_UPDATED_CART = 0;
+    //эти элементы, кажется, не используются
     private final int DISH_CHANGED = 1;
     private final int DISH_NOT_CHANGED = 2;
     private int currentDay;
@@ -66,7 +59,7 @@ public class Main2Activity extends AppCompatActivity implements DishCardFragment
 
         dishCart.addDish(dish);
     }
-
+//при щелчке на всю карточку запустить активность с подробной информацией о блюде
     @Override
     public void onCardClick(Dish dish, int category) {
         Bundle bundle = new Bundle();
@@ -99,7 +92,7 @@ public class Main2Activity extends AppCompatActivity implements DishCardFragment
         //задать адаптер для tabLayout
         adapter = new TabAdapter(getSupportFragmentManager());
 
-        //создать класс столовой из .json и забрать оттуда необходимые категории блюд
+
         viewPager = (ViewPager) findViewById(R.id.menu_list_container);
         viewPager.setAdapter(adapter);
 
@@ -114,14 +107,11 @@ public class Main2Activity extends AppCompatActivity implements DishCardFragment
         tabLayout.setupWithViewPager(viewPager);
 
 
-        //в фоне выполняем чтение файлов
+        //в фоне выполняем чтение файлов (чтобы ничего не виснуло)
         for (int i =0; i < categories_amount; i++){
             MyAsyncTask mTask = new MyAsyncTask();
             mTask.execute(i);
         }
-
-
-        // Set up the ViewPager with the sections adapter.
 
         //настроить  кнопку корзины
         imgBtnToCart = (ImageButton) findViewById(R.id.to_cart_btn);
@@ -152,8 +142,7 @@ public class Main2Activity extends AppCompatActivity implements DishCardFragment
         //при получении данных добавляем все в tabAdapter
         @Override
         protected void onPostExecute(Bundle result) {
-            // [... Сообщите о результате через обновление пользовательского
-            // интерфейса, диалоговое окно или уведомление ...]
+
             String category = result.getString("category");
             DishCardFragment new_fragment = new DishCardFragment();
 
@@ -171,8 +160,7 @@ public class Main2Activity extends AppCompatActivity implements DishCardFragment
             String[] categories = builder.getCategories();
             DishBuilderJSON dish_builder = new DishBuilderJSON(getResources());
             Dish[] dishes;
-                //добавление окошек tab в связи с новой категорией блюд
-                //считаем пока, что день всегда понедельник
+
             Bundle bundle = new Bundle();
 
             dish_builder.setCanteenItem(currentCanteen)
@@ -196,6 +184,7 @@ public class Main2Activity extends AppCompatActivity implements DishCardFragment
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         switch (requestCode){
+            //если запускали активность корзины
             case GET_UPDATED_CART:
                 if (data == null) return;
                 if (resultCode == DISH_NOT_CHANGED) return;
@@ -203,6 +192,7 @@ public class Main2Activity extends AppCompatActivity implements DishCardFragment
                     dishCart=data.getExtras().getParcelable("selected_dishes_list");
                     return;
                 }
+                //если запускали активность подробной информации о блюде
             case GET_DISH_TO_CART:
                 Dish returned_dish = data.getExtras().getParcelable("dish");
                 int times_selected = data.getExtras().getInt("times_selected");

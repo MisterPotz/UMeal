@@ -13,6 +13,7 @@ public class UniversityCanteensHolder extends RecyclerView.ViewHolder {
         txtName = itemView.findViewById(R.id.u_canteen_name);
         txtTime = itemView.findViewById(R.id.u_canteen_working_time);
     }
+    //устанавливаем всю информацию на виджетах
     public void setDetails(UniversityCanteen u_c, int day) {
         txtName.setText(u_c.getName());
         txtTime.setText(u_c.getSchedule(day));

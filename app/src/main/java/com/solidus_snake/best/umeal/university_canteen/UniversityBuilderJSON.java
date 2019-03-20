@@ -12,6 +12,8 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.util.Scanner;
 
+//задуман первоначально как полный получатель всей информации о столовке
+//но в последствии получает только время работы по дням и название столовки
 public class UniversityBuilderJSON extends JSONBuilder<UniversityCanteen> {
 
     public UniversityBuilderJSON setDayToBuild(int day_to_build) {
@@ -49,6 +51,7 @@ public class UniversityBuilderJSON extends JSONBuilder<UniversityCanteen> {
         string_from_json = builder.toString();
     }
 
+    //получить не полностью заданный объект
     @Override
     public UniversityCanteen getObjectFromJSON() {
         String name = "";
@@ -83,7 +86,7 @@ public class UniversityBuilderJSON extends JSONBuilder<UniversityCanteen> {
         return new UniversityCanteen();
 
     }
-
+//получить число категорий в заданный день
     public int getAmountOfCategories(){
 
         String name = "";
@@ -104,7 +107,7 @@ public class UniversityBuilderJSON extends JSONBuilder<UniversityCanteen> {
         }
         return 0;
     }
-
+//получить все категории
     public String[] getCategories() {
 
 
